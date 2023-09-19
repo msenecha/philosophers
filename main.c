@@ -6,45 +6,31 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 13:58:30 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/16 18:11:50 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:10:57 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/philosophers.h"
 
-void	init_philos(t_gen *ptr, t_philo *philo, char **argv)
-{
-	philo->tt_die = ft_atoi(argv[2]);
-	philo->tt_eat = ft_atoi(argv[3]);
-	philo->tt_sleep = ft_atoi(argv[4]);
-	if (argv[5])
-		philo->meals = ft_atoi(argv[5]);
-	else
-		philo->meals = -1;
-}
-
-void	init_forks(t_gen *ptr, t_philo *forks)
+void	create_threads(t_gen *ptr)
 {
 	int	i;
+	pthread_t	monitor;
 
 	i = 0;
-	while(i < ptr->nb_philos)
+	pthread_create(&monitor, NULL, monitoring, ptr->philo);
+	while(i < ptr->philo[i].nb_philos)
 	{
-		pthread_mutex_init(forks[i], NULL);
+		pthread_create(&ptr->philo[i].thread, NULL, routine, &ptr->philo[i]);
 		i++;
 	}
-}
-
-void	init(int argc, char **argv, t_gen *ptr, t_philo *philo, t_philo *forks)
-{
-	ptr->philos = philo;
-	ptr->dead_flag = 0;
-	ptr->nb_philos = ft_atoi(argv[1]);
-	pthread_mutex_init(ptr->dead_lock, NULL);
-	pthread_mutex_init(ptr->eat_lock, NULL);
-	pthread_mutex_init(ptr->display_lock, NULL);
-	init_forks(ptr, forks);
-	init_philos(ptr, philo, argv);
+	pthread_join(monitor, NULL);
+	i = 0;
+	while (i < ptr->philo[i].nb_philos)
+	{
+		pthread_join(ptr->philo[i].thread, NULL);
+		i++;
+	}
 }
 
 int	check_param(int argc, char **argv)
@@ -71,13 +57,14 @@ int	check_param(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_gen	*ptr;
-	t_philo	philo[ft_atoi(argv[1])];
-	t_philo	forks[ft_atoi(argv[1])];
+	t_gen			*ptr;
+	t_philo			philo[ft_atoi(argv[1])];
+	pthread_mutex_t	forks[ft_atoi(argv[1])];
 
 	if (check_param(argc, argv) == 1)
 		return (1);
-	ptr = malloc(sizeof(t_gen));
-	init(argc, argv, ptr, philo, forks);
+	ptr = malloc(sizeof(*ptr));
+	init(argv, ptr, philo, forks);
+	create_threads(ptr);
 	return (0);
 }

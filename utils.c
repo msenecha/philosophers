@@ -6,11 +6,40 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 14:22:45 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/14 14:22:58 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:22:31 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/philosophers.h"
+
+int	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
+		usleep(500);
+	return (0);
+}
+
+void	print_actions(char *str, int id, t_philo *philo)
+{
+	size_t	time;
+
+	pthread_mutex_lock(philo->display_lock);
+	time = (get_current_time() - philo->start_time);
+	printf("0.%04zu : Philo %d %s\n", time, id, str);
+	pthread_mutex_unlock(philo->display_lock);
+}
+
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		write(2, "gettimeofday() error\n", 22);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
 
 int	check_nb(char *str)
 {
