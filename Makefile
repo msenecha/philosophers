@@ -6,7 +6,7 @@
 #    By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 13:58:22 by msenecha          #+#    #+#              #
-#    Updated: 2023/09/19 12:05:32 by msenecha         ###   ########.fr        #
+#    Updated: 2023/09/20 13:06:29 by msenecha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,4 +50,4 @@ re:
 	@$(MAKE) fclean
 	@$(MAKE) all
 
-.PHONY: all libft clean fclean re
+.PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:15:12 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/19 16:08:08 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:26:17 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_think(t_philo *philo)
 
 void	ft_eat(t_philo *philo)
 {
-	philo->start_time = get_current_time();
 	pthread_mutex_lock(philo->r_fork);
 	print_actions("has taken a fork", philo->id, philo);
 	pthread_mutex_lock(philo->l_fork);

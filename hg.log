@@ -1,0 +1,306 @@
+==188717== Helgrind, a thread error detector
+==188717== Copyright (C) 2007-2017, and GNU GPL'd, by OpenWorks LLP et al.
+==188717== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==188717== Command: ./philo 5 800 200 200
+==188717== Parent PID: 181143
+==188717== 
+--188717-- 
+--188717-- Valgrind options:
+--188717--    --tool=helgrind
+--188717--    -v
+--188717--    --log-file=hg.log
+--188717-- Contents of /proc/version:
+--188717--   Linux version 5.4.0-162-generic (buildd@lcy02-amd64-069) (gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1)) #179-Ubuntu SMP Mon Aug 14 08:51:31 UTC 2023
+--188717-- 
+--188717-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--188717-- Page sizes: currently 4096, max supported 4096
+--188717-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+==188717== helgrind --delta-stacktrace=yes only works with --vex-guest-chase-thresh=0
+==188717== => (re-setting it to 0
+--188717-- Reading syms from /nfs/homes/msenecha/Documents/GIT PERSO/philosophers/philo
+--188717-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--188717--   Considering /usr/lib/debug/.build-id/45/87364908de169dec62ffa538170118c1c3a078.debug ..
+--188717--   .. build-id is valid
+--188717-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/helgrind-amd64-linux
+--188717--    object doesn't have a symbol table
+--188717--    object doesn't have a dynamic symbol table
+--188717-- Scheduler: using generic scheduler lock implementation.
+--188717-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==188717== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-188717-by-msenecha-on-???
+==188717== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-188717-by-msenecha-on-???
+==188717== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-188717-by-msenecha-on-???
+==188717== 
+==188717== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==188717== don't want to do, unless you know exactly what you're doing,
+==188717== or are doing some strange experiment):
+==188717==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=188717 ...command...
+==188717== 
+==188717== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==188717==   /path/to/gdb ./philo
+==188717== and then give GDB the following command
+==188717==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=188717
+==188717== --pid is optional if only one valgrind process is running
+==188717== 
+--188717-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--188717--    object doesn't have a symbol table
+--188717-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so
+--188717--    object doesn't have a symbol table
+--188717-- REDIR: 0x401f600 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4845900 (strcmp)
+--188717-- REDIR: 0x4022e20 (ld-linux-x86-64.so.2:strlen) redirected to 0x4844d90 (strlen)
+--188717-- REDIR: 0x4023380 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4848a00 (mempcpy)
+--188717-- Reading syms from /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+--188717--   Considering /usr/lib/debug/.build-id/7b/4536f41cdaa5888408e82d0836e33dcf436466.debug ..
+--188717--   .. build-id is valid
+==188717== WARNING: new redirection conflicts with existing -- ignoring it
+--188717--     old: 0x04878910 (pthread_spin_init   ) W-> (0000.0) 0x04844340 pthread_spin_init
+--188717--     new: 0x04878910 (pthread_spin_init   ) W-> (0000.0) 0x04844350 pthread_spin_unlock
+==188717== WARNING: new redirection conflicts with existing -- ignoring it
+--188717--     old: 0x04878910 (pthread_spin_init   ) W-> (0000.0) 0x04844340 pthread_spin_init
+--188717--     new: 0x04878910 (pthread_spin_init   ) W-> (0000.0) 0x04844350 pthread_spin_unlock
+==188717== WARNING: new redirection conflicts with existing -- ignoring it
+--188717--     old: 0x0487a590 (sem_wait@@GLIBC_2.2.) W-> (0000.0) 0x04844430 sem_wait@*
+--188717--     new: 0x0487a590 (sem_wait@@GLIBC_2.2.) W-> (0000.0) 0x04844420 sem_wait
+==188717== WARNING: new redirection conflicts with existing -- ignoring it
+--188717--     old: 0x0487aa90 (sem_post@@GLIBC_2.2.) W-> (0000.0) 0x04844450 sem_post@*
+--188717--     new: 0x0487aa90 (sem_post@@GLIBC_2.2.) W-> (0000.0) 0x04844440 sem_post
+--188717-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--188717--   Considering /usr/lib/debug/.build-id/18/78e6b475720c7c51969e69ab2d276fae6d1dee.debug ..
+--188717--   .. build-id is valid
+--188717-- REDIR: 0x492b480 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a780 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b7b0 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a0a0 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a7e0 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492cc50 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x4947ce0 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x4947820 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b5e0 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b410 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a710 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a150 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b540 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x49477e0 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a670 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a230 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b800 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a1d0 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b950 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x4948f50 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x4947860 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a820 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a100 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492a630 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x4933bb0 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b850 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b3d0 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x4947930 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492aae0 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b750 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b6f0 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492cc90 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x492b8a0 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--188717-- REDIR: 0x4a13500 (libc.so.6:__strrchr_avx2) redirected to 0x4844930 (rindex)
+--188717-- REDIR: 0x49250e0 (libc.so.6:malloc) redirected to 0x483c820 (malloc)
+--188717-- REDIR: 0x4872690 (libpthread.so.0:pthread_mutex_init) redirected to 0x4843c80 (pthread_mutex_init)
+--188717-- REDIR: 0x48708d0 (libpthread.so.0:pthread_create@@GLIBC_2.2.5) redirected to 0x4843a30 (pthread_create@*)
+--188717-- REDIR: 0x4926b10 (libc.so.6:calloc) redirected to 0x483ed80 (calloc)
+--188717-- REDIR: 0x4872fc0 (libpthread.so.0:pthread_mutex_lock) redirected to 0x4843e40 (pthread_mutex_lock)
+--188717-- REDIR: 0x48747b0 (libpthread.so.0:pthread_mutex_unlock) redirected to 0x4843e70 (pthread_mutex_unlock)
+--188717-- REDIR: 0x4a13310 (libc.so.6:__strchrnul_avx2) redirected to 0x4848760 (strchrnul)
+--188717-- REDIR: 0x4a166c0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4848880 (mempcpy)
+--188717-- REDIR: 0x4a136d0 (libc.so.6:__strlen_avx2) redirected to 0x4844c70 (strlen)
+--188717-- REDIR: 0x48719e0 (libpthread.so.0:pthread_join) redirected to 0x4843a40 (pthread_join)
+==188717== 
+==188717== Process terminating with default action of signal 2 (SIGINT)
+==188717==    at 0x4871CD7: __pthread_clockjoin_ex (pthread_join_common.c:145)
+==188717==    by 0x483FB15: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109365: create_threads (main.c:29)
+==188717==    by 0x109832: main (main.c:70)
+==188717== ---Thread-Announcement------------------------------------------
+==188717== 
+==188717== Thread #6 was created
+==188717==    at 0x49AA122: clone (clone.S:71)
+==188717==    by 0x486F2EB: create_thread (createthread.c:101)
+==188717==    by 0x4870E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==188717==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x10933D: create_threads (main.c:26)
+==188717==    by 0x109832: main (main.c:70)
+==188717== 
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #6: Exiting thread still holds 1 lock
+==188717==    at 0x487B170: __lll_lock_wait (lowlevellock.c:52)
+==188717==    by 0x48730A2: pthread_mutex_lock (pthread_mutex_lock.c:80)
+==188717==    by 0x483FE78: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109FF2: ft_eat (routine.c:31)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+==188717== ---Thread-Announcement------------------------------------------
+==188717== 
+==188717== Thread #7 was created
+==188717==    at 0x49AA122: clone (clone.S:71)
+==188717==    by 0x486F2EB: create_thread (createthread.c:101)
+==188717==    by 0x4870E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==188717==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x10933D: create_threads (main.c:26)
+==188717==    by 0x109832: main (main.c:70)
+==188717== 
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #7: Exiting thread still holds 1 lock
+==188717==    at 0x4874839: __pthread_mutex_unlock_usercnt (pthread_mutex_unlock.c:58)
+==188717==    by 0x4874839: pthread_mutex_unlock (pthread_mutex_unlock.c:357)
+==188717==    by 0x4840458: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109902: print_actions (utils.c:32)
+==188717==    by 0x109FE2: ft_eat (routine.c:30)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+==188717== ---Thread-Announcement------------------------------------------
+==188717== 
+==188717== Thread #5 was created
+==188717==    at 0x49AA122: clone (clone.S:71)
+==188717==    by 0x486F2EB: create_thread (createthread.c:101)
+==188717==    by 0x4870E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==188717==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x10933D: create_threads (main.c:26)
+==188717==    by 0x109832: main (main.c:70)
+==188717== 
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #5: Exiting thread still holds 1 lock
+==188717==    at 0x487B170: __lll_lock_wait (lowlevellock.c:52)
+==188717==    by 0x48730A2: pthread_mutex_lock (pthread_mutex_lock.c:80)
+==188717==    by 0x483FE78: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109FF2: ft_eat (routine.c:31)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+==188717== ---Thread-Announcement------------------------------------------
+==188717== 
+==188717== Thread #4 was created
+==188717==    at 0x49AA122: clone (clone.S:71)
+==188717==    by 0x486F2EB: create_thread (createthread.c:101)
+==188717==    by 0x4870E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==188717==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x10933D: create_threads (main.c:26)
+==188717==    by 0x109832: main (main.c:70)
+==188717== 
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #4: Exiting thread still holds 1 lock
+==188717==    at 0x487B170: __lll_lock_wait (lowlevellock.c:52)
+==188717==    by 0x48730A2: pthread_mutex_lock (pthread_mutex_lock.c:80)
+==188717==    by 0x483FE78: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109FF2: ft_eat (routine.c:31)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+==188717== ---Thread-Announcement------------------------------------------
+==188717== 
+==188717== Thread #3 was created
+==188717==    at 0x49AA122: clone (clone.S:71)
+==188717==    by 0x486F2EB: create_thread (createthread.c:101)
+==188717==    by 0x4870E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==188717==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x10933D: create_threads (main.c:26)
+==188717==    by 0x109832: main (main.c:70)
+==188717== 
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #3: Exiting thread still holds 1 lock
+==188717==    at 0x487B170: __lll_lock_wait (lowlevellock.c:52)
+==188717==    by 0x48730A2: pthread_mutex_lock (pthread_mutex_lock.c:80)
+==188717==    by 0x483FE78: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109FF2: ft_eat (routine.c:31)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+==188717== 
+==188717== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 56 from 14)
+==188717== 
+==188717== 1 errors in context 1 of 5:
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #3: Exiting thread still holds 1 lock
+==188717==    at 0x487B170: __lll_lock_wait (lowlevellock.c:52)
+==188717==    by 0x48730A2: pthread_mutex_lock (pthread_mutex_lock.c:80)
+==188717==    by 0x483FE78: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109FF2: ft_eat (routine.c:31)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+==188717== 
+==188717== 1 errors in context 2 of 5:
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #4: Exiting thread still holds 1 lock
+==188717==    at 0x487B170: __lll_lock_wait (lowlevellock.c:52)
+==188717==    by 0x48730A2: pthread_mutex_lock (pthread_mutex_lock.c:80)
+==188717==    by 0x483FE78: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109FF2: ft_eat (routine.c:31)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+==188717== 
+==188717== 1 errors in context 3 of 5:
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #5: Exiting thread still holds 1 lock
+==188717==    at 0x487B170: __lll_lock_wait (lowlevellock.c:52)
+==188717==    by 0x48730A2: pthread_mutex_lock (pthread_mutex_lock.c:80)
+==188717==    by 0x483FE78: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109FF2: ft_eat (routine.c:31)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+==188717== 
+==188717== 1 errors in context 4 of 5:
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #7: Exiting thread still holds 1 lock
+==188717==    at 0x4874839: __pthread_mutex_unlock_usercnt (pthread_mutex_unlock.c:58)
+==188717==    by 0x4874839: pthread_mutex_unlock (pthread_mutex_unlock.c:357)
+==188717==    by 0x4840458: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109902: print_actions (utils.c:32)
+==188717==    by 0x109FE2: ft_eat (routine.c:30)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+==188717== 
+==188717== 1 errors in context 5 of 5:
+==188717== ----------------------------------------------------------------
+==188717== 
+==188717== Thread #6: Exiting thread still holds 1 lock
+==188717==    at 0x487B170: __lll_lock_wait (lowlevellock.c:52)
+==188717==    by 0x48730A2: pthread_mutex_lock (pthread_mutex_lock.c:80)
+==188717==    by 0x483FE78: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x109FF2: ft_eat (routine.c:31)
+==188717==    by 0x10A143: routine (routine.c:66)
+==188717==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==188717==    by 0x4870608: start_thread (pthread_create.c:477)
+==188717==    by 0x49AA132: clone (clone.S:95)
+==188717== 
+--188717-- 
+--188717-- used_suppression:     56 helgrind-glibc2X-005 /usr/lib/x86_64-linux-gnu/valgrind/default.supp:963
+==188717== 
+==188717== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 56 from 14)

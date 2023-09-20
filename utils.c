@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 14:22:45 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/19 16:22:31 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:26:33 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_actions(char *str, int id, t_philo *philo)
 
 	pthread_mutex_lock(philo->display_lock);
 	time = (get_current_time() - philo->start_time);
-	printf("0.%04zu : Philo %d %s\n", time, id, str);
+	printf("%04zu : Philo %d %s\n", time, id, str);
 	pthread_mutex_unlock(philo->display_lock);
 }
 

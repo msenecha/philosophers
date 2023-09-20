@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 13:58:30 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/19 17:10:57 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/20 13:15:01 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ void	create_threads(t_gen *ptr)
 {
 	int	i;
 	pthread_t	monitor;
+	t_philo		*philo;
 
 	i = 0;
-	pthread_create(&monitor, NULL, monitoring, ptr->philo);
-	while(i < ptr->philo[i].nb_philos)
+	philo = ptr->philo;
+	pthread_create(&monitor, NULL, monitoring, philo);
+	while(i < ptr->philo[0].nb_philos)
 	{
 		pthread_create(&ptr->philo[i].thread, NULL, routine, &ptr->philo[i]);
 		i++;
 	}
 	pthread_join(monitor, NULL);
 	i = 0;
-	while (i < ptr->philo[i].nb_philos)
+	while (i < ptr->philo[0].nb_philos)
 	{
 		pthread_join(ptr->philo[i].thread, NULL);
 		i++;
