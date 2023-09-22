@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:15:12 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/20 15:26:17 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/22 11:50:24 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	*routine(void *ptr)
 	philo = ptr;
 	if (philo->id % 2 == 0)
 		ft_usleep(1);
-	while (!dead_loop(philo))
+	while (dead_loop(philo) != 1)
 	{
 		ft_eat(philo);
 		ft_sleep(philo);

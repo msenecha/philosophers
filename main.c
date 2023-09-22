@@ -6,13 +6,13 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 13:58:30 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/20 13:15:01 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/22 11:06:10 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/philosophers.h"
 
-void	create_threads(t_gen *ptr)
+void	create_threads(t_gen *ptr, pthread_mutex_t *forks)
 {
 	int	i;
 	pthread_t	monitor;
@@ -20,17 +20,21 @@ void	create_threads(t_gen *ptr)
 
 	i = 0;
 	philo = ptr->philo;
-	pthread_create(&monitor, NULL, monitoring, philo);
+	if (pthread_create(&monitor, NULL, monitoring, philo) != 0)
+		destroy_everything(ptr, forks);
 	while(i < ptr->philo[0].nb_philos)
 	{
-		pthread_create(&ptr->philo[i].thread, NULL, routine, &ptr->philo[i]);
+		if (pthread_create(&ptr->philo[i].thread, NULL, routine, &ptr->philo[i]) != 0)
+			destroy_everything(ptr, forks);
 		i++;
 	}
-	pthread_join(monitor, NULL);
+	if (pthread_join(monitor, NULL) != 0)
+		destroy_everything(ptr, forks);
 	i = 0;
 	while (i < ptr->philo[0].nb_philos)
 	{
-		pthread_join(ptr->philo[i].thread, NULL);
+		if (pthread_join(ptr->philo[i].thread, NULL) != 0)
+			destroy_everything(ptr, forks);
 		i++;
 	}
 }
@@ -67,6 +71,7 @@ int	main(int argc, char **argv)
 		return (1);
 	ptr = malloc(sizeof(*ptr));
 	init(argv, ptr, philo, forks);
-	create_threads(ptr);
+	create_threads(ptr, forks);
+	destroy_everything(ptr, forks);
 	return (0);
 }

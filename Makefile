@@ -6,7 +6,7 @@
 #    By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 13:58:22 by msenecha          #+#    #+#              #
-#    Updated: 2023/09/20 13:06:29 by msenecha         ###   ########.fr        #
+#    Updated: 2023/09/21 11:41:31 by msenecha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INCLUDES		= -I$(HEADERS_DIR)
 
 HEADERS_DIR		= ./includes/
 
-SRC				= main.c utils.c init.c routine.c monitoring.c
+SRC				= main.c utils.c init.c routine.c monitoring.c clearing.c
 
 OBJECTS			= $(SRC:.c=.o)
 

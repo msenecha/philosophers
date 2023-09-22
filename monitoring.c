@@ -6,15 +6,15 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:04:17 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/20 18:38:07 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/22 11:54:42 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/philosophers.h"
 
-int	check_if_dead(t_philo *philo)
+int	check_if_dead(t_philo *philo, size_t tt_die)
 {
-	if ((get_current_time() - philo->last_meal) >= philo->tt_die)
+	if ((get_current_time() - philo->last_meal) >= tt_die && philo->eating == 0)
 		return (1);
 	return (0);
 }
@@ -27,14 +27,14 @@ int	check_death(t_philo *philo)
 	i = 0;
 	while (i < philo[0].nb_philos)
 	{
-		if (check_if_dead(&philo[i]) == 1)
+		if (check_if_dead(&philo[i], philo[i].tt_die) == 1)
 		{
 			pthread_mutex_lock(philo[i].dead_lock);
-			philo->dead = 1;
+			philo[i].dead = 1;
 			pthread_mutex_unlock(philo[i].dead_lock);
 			pthread_mutex_lock(philo[i].display_lock);
 			time = get_current_time() - philo[i].start_time;
-			printf("%zu : Philo %d died\n", time, philo[i].id);
+			printf("%04zu : Philo %d died\n", time, philo[i].id);
 			pthread_mutex_unlock(philo[i].display_lock);
 			return (1);
 		}
