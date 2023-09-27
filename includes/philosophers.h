@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 13:58:50 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/22 11:55:39 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/27 15:06:00 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ int		ft_usleep(size_t milliseconds);
 void	clear_threads(void *ptr);
 void	destroy_everything(t_gen *ptr, pthread_mutex_t *forks);
 int		check_if_dead(t_philo *philo, size_t tt_die);
+int		dead_loop(t_philo *ptr);
 
 #endif
