@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:19:35 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/22 10:29:55 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/28 09:39:43 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	destroy_everything(t_gen *ptr, pthread_mutex_t *forks)
 		pthread_mutex_destroy(&forks[i]);
 		i++;
 	}
+	exit(EXIT_SUCCESS);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 13:58:50 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/27 15:06:00 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/28 17:14:42 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_philo
 	pthread_mutex_t		*eat_lock;
 	pthread_mutex_t		*r_fork;
 	pthread_mutex_t		*l_fork;
+	struct s_gen		*flag;
 }				t_philo;
 
 typedef struct s_gen

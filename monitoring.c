@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:04:17 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/27 17:48:31 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/28 18:25:45 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ int	check_if_dead(t_philo *philo, size_t tt_die)
 {
 	pthread_mutex_lock(philo->eat_lock);
 	if ((get_current_time() - philo->last_meal) >= tt_die && philo->eating == 0)
-		return (pthread_mutex_unlock(philo->eat_lock), 1);
+	{
+		pthread_mutex_unlock(philo->eat_lock);
+		return (1);
+	}
 	pthread_mutex_unlock(philo->eat_lock);
 	return (0);
 }
@@ -32,7 +35,7 @@ int	check_death(t_philo *philo)
 		if (check_if_dead(&philo[i], philo[i].tt_die) == 1)
 		{
 			pthread_mutex_lock(philo[i].dead_lock);
-			philo[i].dead = 1;
+			philo[i].flag->dead_flag = 1;
 			pthread_mutex_unlock(philo[i].dead_lock);
 			time = get_current_time() - philo[i].start_time;
 			pthread_mutex_lock(philo[i].display_lock);
@@ -65,7 +68,7 @@ int	check_meals_eaten(t_philo *philo)
 	if (finished == philo[0].nb_philos)
 	{
 		pthread_mutex_lock(philo[0].dead_lock);
-		philo[0].dead = 1;
+		philo[0].flag->dead_flag = 1;
 		pthread_mutex_unlock(philo[0].dead_lock);
 		return (1);
 	}
@@ -82,6 +85,5 @@ void	*monitoring(void *ptr)
 		if ((check_death(philo) == 1) || (check_meals_eaten(philo) == 1))
 			break;
 	}
-	printf("**************returning from monitoring***************\n");
-	return (ptr);
+	return (NULL);
 }

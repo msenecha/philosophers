@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 13:58:30 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/27 17:59:16 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/28 17:51:36 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	create_threads(t_gen *ptr, pthread_mutex_t *forks)
 	int	i;
 	pthread_t	monitor;
 	t_philo		*philo;
-	void	*retval;
 
 	i = 0;
 	philo = ptr->philo;
@@ -29,12 +28,12 @@ void	create_threads(t_gen *ptr, pthread_mutex_t *forks)
 			destroy_everything(ptr, forks);
 		i++;
 	}
-	if (pthread_join(monitor, &retval) != 0)
+	if (pthread_join(monitor, NULL) != 0)
 		destroy_everything(ptr, forks);
 	i = 0;
 	while (i < ptr->philo[0].nb_philos)
 	{
-		if (pthread_join(ptr->philo[i].thread, &retval) != 0)
+		if (pthread_join(ptr->philo[i].thread, NULL) != 0)
 			destroy_everything(ptr, forks);
 		i++;
 	}
@@ -73,7 +72,6 @@ int	main(int argc, char **argv)
 	ptr = malloc(sizeof(*ptr));
 	init(argv, ptr, philo, forks);
 	create_threads(ptr, forks);
-	printf("destroy pthread_create philo");
 	destroy_everything(ptr, forks);
 	return (0);
 }

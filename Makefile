@@ -6,7 +6,7 @@
 #    By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 13:58:22 by msenecha          #+#    #+#              #
-#    Updated: 2023/09/21 11:41:31 by msenecha         ###   ########.fr        #
+#    Updated: 2023/09/28 17:25:30 by msenecha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 NAME			= philo
 CC				= gcc
 FLAGS 			= -g -Wall -Wextra -Werror
-FSANITIZE		= -fsanitize=address -g3
+FSANITIZE		= -fsanitize=thread -g3
 LIB				= -lpthread
 INCLUDES		= -I$(HEADERS_DIR)
 

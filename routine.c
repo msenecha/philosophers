@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:15:12 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/27 17:48:37 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/28 18:41:20 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ void	ft_eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
 	print_actions("has taken a fork", philo->id, philo);
+	/*
+	if (philo->nb_philos == 1)
+	{
+		ft_usleep(philo->tt_die);
+		pthread_mutex_unlock(philo->r_fork);
+		philo->flag->dead_flag = 1;
+		return ;
+	}
+	*/
 	pthread_mutex_lock(philo->l_fork);
 	print_actions("has taken a fork", philo->id, philo);
 	philo->eating = 1;
@@ -37,16 +46,15 @@ void	ft_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->eat_lock);
 	ft_usleep(philo->tt_eat);
 	philo->eating = 0;
-	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
+	pthread_mutex_unlock(philo->l_fork);
 }
 
 int	dead_loop(t_philo *ptr)
 {
 	pthread_mutex_lock(ptr->dead_lock);
-	if (ptr->dead == 1)
+	if (ptr->flag->dead_flag == 1)
 	{
-		printf("------------------> dead loop : %d\n", ptr->dead);
 		pthread_mutex_unlock(ptr->dead_lock);
 		return (1);
 	}
@@ -60,13 +68,12 @@ void	*routine(void *ptr)
 
 	philo = ptr;
 	if (philo->id % 2 == 0)
-		ft_usleep(1);
+		ft_usleep(philo->tt_die / 10);
 	while (dead_loop(philo) != 1)
 	{
 		ft_eat(philo);
 		ft_sleep(philo);
 		ft_think(philo);
 	}
-	printf("**************returning from routine***************\n");
-	return (ptr);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:14:00 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/27 18:05:40 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/28 18:31:10 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ void	init_philos(t_gen *ptr, t_philo *philo, char **argv, pthread_mutex_t *forks
 	int	i;
 
 	i = 0;
+
 	while(i < ptr->nb_philosophers)
 	{
 		philo[i].id = i + 1;
-		philo[i].dead = ptr->dead_flag;
+		philo[i].dead = 0;
 		philo[i].eating = 0;
 		philo[i].eaten = 0;
+		philo[i].flag = ptr;
 		philo[i].start_time = get_current_time();
 		philo[i].last_meal = get_current_time();
 		init_args(argv, &philo[i]);
