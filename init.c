@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:14:00 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/28 18:31:10 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/29 12:08:09 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	init_args(char **argv, t_philo *philo)
 		philo->meals = -1;
 }
 
-void	init_philos(t_gen *ptr, t_philo *philo, char **argv, pthread_mutex_t *forks)
+void	init_philos(t_gen *ptr, t_philo *philo, char **argv,
+		pthread_mutex_t *forks)
 {
 	int	i;
 
 	i = 0;
-
-	while(i < ptr->nb_philosophers)
+	while (i < ptr->nb_philosophers)
 	{
 		philo[i].id = i + 1;
 		philo[i].dead = 0;
@@ -57,7 +57,7 @@ void	init_forks(t_gen *ptr, pthread_mutex_t *forks)
 	int	i;
 
 	i = 0;
-	while(i < ptr->nb_philosophers)
+	while (i < ptr->nb_philosophers)
 	{
 		pthread_mutex_init(&forks[i], NULL);
 		i++;

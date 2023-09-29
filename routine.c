@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:15:12 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/28 18:41:20 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/29 15:08:20 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,17 @@ void	ft_think(t_philo *philo)
 
 void	ft_eat(t_philo *philo)
 {
-	pthread_mutex_lock(philo->r_fork);
+	pthread_mutex_lock(philo->l_fork);
+	if (philo->nb_philos > 1)
+		pthread_mutex_lock(philo->r_fork);
 	print_actions("has taken a fork", philo->id, philo);
-	/*
 	if (philo->nb_philos == 1)
 	{
 		ft_usleep(philo->tt_die);
-		pthread_mutex_unlock(philo->r_fork);
+		pthread_mutex_unlock(philo->l_fork);
 		philo->flag->dead_flag = 1;
 		return ;
 	}
-	*/
-	pthread_mutex_lock(philo->l_fork);
 	print_actions("has taken a fork", philo->id, philo);
 	philo->eating = 1;
 	print_actions("is eating", philo->id, philo);

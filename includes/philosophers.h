@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 13:58:50 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/28 17:14:42 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/29 11:43:47 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <string.h>
 # include <sys/time.h>
+
+# define MAX_PHILO 200
 
 typedef struct s_philo
 {

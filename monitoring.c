@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:04:17 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/28 18:25:45 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/29 12:12:44 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_if_dead(t_philo *philo, size_t tt_die)
 
 int	check_death(t_philo *philo)
 {
-	int	i;
+	int		i;
 	size_t	time;
 
 	i = 0;
@@ -83,7 +83,7 @@ void	*monitoring(void *ptr)
 	while (1)
 	{
 		if ((check_death(philo) == 1) || (check_meals_eaten(philo) == 1))
-			break;
+			break ;
 	}
 	return (NULL);
 }
