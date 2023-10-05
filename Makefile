@@ -6,7 +6,7 @@
 #    By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 13:58:22 by msenecha          #+#    #+#              #
-#    Updated: 2023/09/29 15:07:39 by msenecha         ###   ########.fr        #
+#    Updated: 2023/10/04 12:20:48 by msenecha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJECTS			= $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@$(CC) $(FLAGS) $(INCLUDES) $(OBJECTS) $(LIB) -o $(NAME)
+	@$(CC) $(FLAGS) $(FSANITIZE) $(INCLUDES) $(OBJECTS) $(LIB) -o $(NAME)
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@

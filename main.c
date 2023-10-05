@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 13:58:30 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/29 12:10:28 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:40:13 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ int	check_param(int argc, char **argv)
 	if (ft_atoi(argv[1]) > 200)
 		return (write(1, "Error : Number of philosophers should not be \
 				more than 200.\n", 61), 1);
+	if(ft_atoi(argv[1]) == 1)
+	{
+		printf("Philo 0 has taken a fork\n");
+		ft_usleep(ft_atoi(argv[2]));
+		printf("Philo 0 died\n");
+	}
 	while (i < (argc - 1))
 	{
 		if (ft_atoi(argv[i]) <= 0)
@@ -68,12 +74,14 @@ int	check_param(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_gen			*ptr;
-	t_philo			philo[MAX_PHILO];
-	pthread_mutex_t	forks[MAX_PHILO];
+	t_philo			*philo;
+	pthread_mutex_t	*forks;
 
 	if (check_param(argc, argv) == 1)
 		return (1);
 	ptr = malloc(sizeof(*ptr));
+	philo = malloc(ft_atoi(argv[1]) * sizeof(t_philo));
+	forks = malloc(ft_atoi(argv[1]) * sizeof(pthread_mutex_t));
 	init(argv, ptr, philo, forks);
 	create_threads(ptr, forks);
 	destroy_everything(ptr, forks);
