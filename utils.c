@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 14:22:45 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/27 15:04:49 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/10/06 16:54:36 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_actions(char *str, int id, t_philo *philo)
 	pthread_mutex_lock(philo->display_lock);
 	time = (get_current_time() - philo->start_time);
 	if (dead_loop(philo) != 1)
-		printf("%04zu : Philo %d %s\n", time, id, str);
+		printf("%04zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(philo->display_lock);
 }
 
@@ -37,7 +37,7 @@ size_t	get_current_time(void)
 {
 	struct timeval	time;
 
-	if (gettimeofday(&time, NULL) == -1)
+	if (gettimeofday(&time, NUmakLL) == -1)
 		write(2, "gettimeofday() error\n", 22);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
