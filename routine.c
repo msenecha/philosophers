@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:15:12 by msenecha          #+#    #+#             */
-/*   Updated: 2023/10/04 18:45:16 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/29 15:08:20 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,30 @@ void	ft_sleep(t_philo *philo)
 void	ft_think(t_philo *philo)
 {
 	print_actions("is thinking", philo->id, philo);
-	ft_usleep(philo->tt_die - (philo->tt_eat + philo->tt_sleep + 20));
 }
 
 void	ft_eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->l_fork);
+	if (philo->nb_philos > 1)
+		pthread_mutex_lock(philo->r_fork);
 	print_actions("has taken a fork", philo->id, philo);
-	pthread_mutex_lock(philo->r_fork);
+	if (philo->nb_philos == 1)
+	{
+		ft_usleep(philo->tt_die);
+		pthread_mutex_unlock(philo->l_fork);
+		philo->flag->dead_flag = 1;
+		return ;
+	}
 	print_actions("has taken a fork", philo->id, philo);
-	pthread_mutex_lock(philo->eat_lock);
 	philo->eating = 1;
-	philo->eaten += 1;
-	philo->eating = 0;
 	print_actions("is eating", philo->id, philo);
+	pthread_mutex_lock(philo->eat_lock);
 	philo->last_meal = get_current_time();
+	philo->eaten += 1;
 	pthread_mutex_unlock(philo->eat_lock);
 	ft_usleep(philo->tt_eat);
+	philo->eating = 0;
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 }
@@ -60,7 +67,7 @@ void	*routine(void *ptr)
 
 	philo = ptr;
 	if (philo->id % 2 == 0)
-		ft_usleep(1);
+		ft_usleep(philo->tt_die / 10);
 	while (dead_loop(philo) != 1)
 	{
 		ft_eat(philo);

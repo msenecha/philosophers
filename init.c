@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:14:00 by msenecha          #+#    #+#             */
-/*   Updated: 2023/10/04 16:14:17 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/09/29 12:08:09 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_philos(t_gen *ptr, t_philo *philo, char **argv,
 		philo[i].dead_lock = &ptr->dead_lock;
 		philo[i].l_fork = &forks[i];
 		if (i == 0)
-			philo[i].r_fork = &forks[ptr->nb_philosophers - 1];
+			philo[i].r_fork = &forks[philo[i].nb_philos - 1];
 		else
 			philo[i].r_fork = &forks[i - 1];
 		i++;
