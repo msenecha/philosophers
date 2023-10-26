@@ -6,7 +6,7 @@
 #    By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 13:58:22 by msenecha          #+#    #+#              #
-#    Updated: 2023/09/29 15:07:39 by msenecha         ###   ########.fr        #
+#    Updated: 2023/10/07 18:46:47 by msenecha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INCLUDES		= -I$(HEADERS_DIR)
 
 HEADERS_DIR		= ./includes/
 
-SRC				= main.c utils.c init.c routine.c monitoring.c clearing.c
+SRC				= main.c utils.c init.c routine.c monitoring.c
 
 OBJECTS			= $(SRC:.c=.o)
 
@@ -35,7 +35,7 @@ OBJECTS			= $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@$(CC) $(FLAGS) $(INCLUDES) $(OBJECTS) $(LIB) -o $(NAME)
+	@$(CC) $(INCLUDES) $(OBJECTS) $(LIB) -o $(NAME)
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@

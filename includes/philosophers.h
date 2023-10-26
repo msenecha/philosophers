@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 13:58:50 by msenecha          #+#    #+#             */
-/*   Updated: 2023/09/29 11:43:47 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:33:34 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_philo
 {
 	pthread_t			thread;
 	int					id;
-	int					dead;
+	int					dead; // je crois que je l'utilise meme plus en fait, a verifier
 	int					nb_philos;
 	int					eating;
 	int					eaten;
@@ -41,7 +41,7 @@ typedef struct s_philo
 	pthread_mutex_t		*eat_lock;
 	pthread_mutex_t		*r_fork;
 	pthread_mutex_t		*l_fork;
-	struct s_gen		*flag;
+	struct s_gen		*flag; // utile pour mettre le dead_flag general a 1 si un philo meurt : philo[i].flag->dead_flag (le dead_flag de struct generale qui condition la routine)
 }				t_philo;
 
 typedef struct s_gen

@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 14:22:45 by msenecha          #+#    #+#             */
-/*   Updated: 2023/10/06 16:54:36 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/10/07 15:42:14 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ size_t	get_current_time(void)
 {
 	struct timeval	time;
 
-	if (gettimeofday(&time, NUmakLL) == -1)
+	if (gettimeofday(&time, NULL) == -1)
 		write(2, "gettimeofday() error\n", 22);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
